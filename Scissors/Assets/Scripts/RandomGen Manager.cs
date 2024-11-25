@@ -8,10 +8,14 @@ public class RandomGenManager : MonoBehaviour
     [SerializeField]
     private GameObject _paperPrefab;
 
+    [SerializeField] 
+    private GameObject _rockPrefab;
+
     [SerializeField]
     private GameObject spawnArea;
 
-    private int numberToSpawn;
+    private int startingPaper;
+    private int startingRock;
 
     private void Awake()
     {
@@ -26,14 +30,20 @@ public class RandomGenManager : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
 
-        numberToSpawn = 10;
+        startingPaper = 10;
+        startingRock = 10;
     }
 
     private void Start()
     {
-        for (int i = 0; i < numberToSpawn; i++)
+        for (int i = 0; i < startingPaper; i++)
         {
             GeneratePapers();
+        }
+
+        for (int i = 0; i < startingRock; i++)
+        {
+            GenerateRocks();
         }
     }
 
@@ -47,5 +57,17 @@ public class RandomGenManager : MonoBehaviour
         Vector3 randomPoint = new Vector3(randomX, randomY, 0);
 
         Instantiate(_paperPrefab, randomPoint, Quaternion.identity);
+    }
+
+    public void GenerateRocks()
+    {
+        Bounds bounds = spawnArea.GetComponent<Renderer>().bounds;
+
+        float randomX = Random.Range(bounds.min.x, bounds.max.x);
+        float randomY = Random.Range(bounds.min.y, bounds.max.y);
+
+        Vector3 randomPoint = new Vector3(randomX, randomY, 0);
+
+        Instantiate(_rockPrefab, randomPoint, Quaternion.identity);
     }
 }

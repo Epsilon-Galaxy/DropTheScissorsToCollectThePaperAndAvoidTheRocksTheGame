@@ -2047,7 +2047,7 @@ GameObject:
   - component: {fileID: 562949260}
   - component: {fileID: 562949259}
   m_Layer: 0
-  m_Name: PaperSpawnArea
+  m_Name: RandomGenArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4719,7 +4719,7 @@ GameObject:
   - component: {fileID: 1105427979}
   - component: {fileID: 1105427978}
   m_Layer: 0
-  m_Name: PaperGen
+  m_Name: RandomGen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4738,6 +4738,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _paperPrefab: {fileID: 2145362731630218943, guid: 5897a6b56ed86c745b82f639123c0dbc, type: 3}
+  _rockPrefab: {fileID: 6743153180337301230, guid: a95156fbde194e145bff77a74c2d645d, type: 3}
   spawnArea: {fileID: 562949258}
 --- !u!4 &1105427979
 Transform:
