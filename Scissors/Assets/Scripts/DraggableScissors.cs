@@ -8,6 +8,7 @@ public class DraggableScissors : MonoBehaviour
     private Vector3 initialPosition;  // Store the initial position of the scissors
 
     private Camera mainCamera;  // Reference to the main camera
+    public LivesTracker livesTracker; 
 
     private void Start()
     {
@@ -71,12 +72,20 @@ public class DraggableScissors : MonoBehaviour
 
     private void ResetPosition()
     {
-        // Reset the scissors back to the initial position
-        transform.position = initialPosition;
-        rb.linearVelocity = Vector2.zero;  // Stop any current velocity
-        rb.gravityScale = 0f; // Disable gravity until the scissors are dropped again
-        rb.angularVelocity = 0f; // Stop any angular velocity (spinning)
-        transform.rotation = Quaternion.identity; // Set the rotation back to 0 (no rotation)
+        if (livesTracker.UseLife())
+        {
+            // Reset the scissors back to the initial position
+            transform.position = initialPosition;
+            rb.linearVelocity = Vector2.zero;  // Stop any current velocity
+            rb.gravityScale = 0f; // Disable gravity until the scissors are dropped again
+            rb.angularVelocity = 0f; // Stop any angular velocity (spinning)
+            transform.rotation = Quaternion.identity; // Set the rotation back to 0 (no rotation)
+        }
+        else
+        {
+            // Game over logic
+            Debug.Log("Game Over! No more scissors can be dropped.");
+            this.enabled = false; // Disable this script
+        }
     }
 }
-
