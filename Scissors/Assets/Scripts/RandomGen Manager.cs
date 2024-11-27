@@ -14,12 +14,11 @@ public class RandomGenManager : MonoBehaviour
     [SerializeField]
     private GameObject spawnArea;
 
-    private int startingPaper;
-    private int startingRock;
+    public int startingPaper;
+    public int startingRock;
 
     private void Awake()
     {
-        // Ensure only one instance exists
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -27,14 +26,11 @@ public class RandomGenManager : MonoBehaviour
         }
 
         Instance = this;
-
-        DontDestroyOnLoad(gameObject);
-
         startingPaper = 10;
         startingRock = 10;
     }
 
-     private void Start()
+    private void Start()
     {
         ScoreKeeper scoreKeeper = FindObjectOfType<ScoreKeeper>();
         scoreKeeper.requiredPapers = startingPaper;
@@ -74,6 +70,33 @@ public class RandomGenManager : MonoBehaviour
         Instantiate(_rockPrefab, randomPoint, Quaternion.identity);
     }
 
-   
+    public void ResetGameObjects()
+    {
+        ClearGameObjects();
 
+        for (int i = 0; i < startingPaper; i++)
+        {
+            GeneratePapers();
+        }
+
+        for (int i = 0; i < startingRock; i++)
+        {
+            GenerateRocks();
+        }
+    }
+
+    private void ClearGameObjects()
+    {
+        GameObject[] papers = GameObject.FindGameObjectsWithTag("Paper");
+        foreach (GameObject paper in papers)
+        {
+            Destroy(paper);
+        }
+
+        GameObject[] rocks = GameObject.FindGameObjectsWithTag("Rock");
+        foreach (GameObject rock in rocks)
+        {
+            Destroy(rock);
+        }
+    }
 }

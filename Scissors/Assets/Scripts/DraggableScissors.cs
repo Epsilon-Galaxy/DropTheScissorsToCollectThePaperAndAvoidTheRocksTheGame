@@ -68,9 +68,6 @@ public class DraggableScissors : MonoBehaviour
         
         // Enable gravity to allow the scissors to fall naturally
         rb.gravityScale = 1f; // Enable gravity to let the scissors fall with gravity
-
-        // Optionally adjust the initial velocity to add a slight downward motion
-        // rb.velocity = new Vector2(0, -2f); // Uncomment this line to add a small downward velocity if you want
     }
 
     private void ResetPosition()

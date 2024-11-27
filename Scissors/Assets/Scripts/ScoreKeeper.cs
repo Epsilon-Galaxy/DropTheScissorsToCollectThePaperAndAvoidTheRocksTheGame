@@ -1,35 +1,32 @@
 using UnityEngine;
-using TMPro; // For TextMeshPro
+using TMPro;
 
 public class ScoreKeeper : MonoBehaviour
 {
-    public int score = 0;  // Total score
-    public int scissorsUsed = 0;  // Total scissors used
-    public int totalPapers = 0;  // Total papers collected
-    public int requiredPapers;  // Total number of papers in the game
+    public int score = 0;
+    public int scissorsUsed = 0;
+    public int totalPapers = 0;
+    public int requiredPapers;
 
-    public TextMeshProUGUI scoreText; // Reference to the TextMeshPro UI element
+    public TextMeshProUGUI scoreText;
 
     private void Start()
     {
-        UpdateScoreText(); // Ensure the score is displayed correctly at the start
+        UpdateScoreText();
     }
 
-    // Method to increment the score when a paper is collected
     public void IncrementScore()
     {
         score++;
         totalPapers++;
         UpdateScoreText();
 
-        // Check if all papers are collected
         if (totalPapers == requiredPapers)
         {
             ApplyMultiplier();
         }
     }
 
-    // Method to apply score multiplier based on scissors usage
     private void ApplyMultiplier()
     {
         if (scissorsUsed == 1)
@@ -41,20 +38,17 @@ public class ScoreKeeper : MonoBehaviour
             score *= 2;
         }
 
-        // Update the score text with the multiplier applied
         UpdateScoreText();
         Debug.Log("Final Score: " + score);
     }
 
-    // Method to track scissors usage
     public void UseScissors()
     {
         scissorsUsed++;
     }
 
-    // Method to update the score UI text
     private void UpdateScoreText()
     {
-        scoreText.text = "Score: " + score.ToString(); // Update the UI text with the "Score:" prefix
+        scoreText.text = "Score: " + score.ToString();
     }
 }
