@@ -34,8 +34,11 @@ public class RandomGenManager : MonoBehaviour
         startingRock = 10;
     }
 
-    private void Start()
+     private void Start()
     {
+        ScoreKeeper scoreKeeper = FindObjectOfType<ScoreKeeper>();
+        scoreKeeper.requiredPapers = startingPaper;
+
         for (int i = 0; i < startingPaper; i++)
         {
             GeneratePapers();
@@ -70,4 +73,7 @@ public class RandomGenManager : MonoBehaviour
 
         Instantiate(_rockPrefab, randomPoint, Quaternion.identity);
     }
+
+   
+
 }

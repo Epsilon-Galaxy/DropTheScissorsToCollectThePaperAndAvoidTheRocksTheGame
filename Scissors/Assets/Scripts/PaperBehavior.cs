@@ -6,12 +6,15 @@ public class PaperBehavior : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Destroy(gameObject);
+            ScoreKeeper scoreKeeper = FindObjectOfType<ScoreKeeper>();
+            scoreKeeper.IncrementScore(); // Notify ScoreKeeper of score increment
+
+            Destroy(gameObject); // Remove the paper after it's collected
         }
         else if (collision.gameObject.CompareTag("Wall"))
         {
-            Destroy(gameObject);
-            RandomGenManager.Instance.GeneratePapers();
+            Destroy(gameObject); // Destroy paper if it hits a wall
+            RandomGenManager.Instance.GeneratePapers(); // Generate a new paper
         }
     }
 

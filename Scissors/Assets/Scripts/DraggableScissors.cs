@@ -63,6 +63,9 @@ public class DraggableScissors : MonoBehaviour
 
     private void DropScissors()
     {
+        ScoreKeeper scoreKeeper = FindObjectOfType<ScoreKeeper>();
+        scoreKeeper.UseScissors();
+        
         // Enable gravity to allow the scissors to fall naturally
         rb.gravityScale = 1f; // Enable gravity to let the scissors fall with gravity
 
