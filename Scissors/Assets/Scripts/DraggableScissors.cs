@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class DraggableScissors : MonoBehaviour
@@ -74,6 +75,7 @@ public class DraggableScissors : MonoBehaviour
     {
         if (livesTracker.UseLife())
         {
+            rb = GetComponent<Rigidbody2D>();
             // Reset the scissors back to the initial position
             transform.position = initialPosition;
             rb.linearVelocity = Vector2.zero;  // Stop any current velocity
@@ -86,6 +88,15 @@ public class DraggableScissors : MonoBehaviour
             // Game over logic
             Debug.Log("Game Over! No more scissors can be dropped.");
             this.enabled = false; // Disable this script
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Rock")
+        {
+            rb = GetComponent<Rigidbody2D>();
+            ResetPosition();
         }
     }
 }

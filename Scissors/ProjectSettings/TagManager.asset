@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Pins
   - Wall
+  - Rock
   layers:
   - Default
   - TransparentFX

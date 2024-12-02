@@ -26,8 +26,6 @@ public class RandomGenManager : MonoBehaviour
         }
 
         Instance = this;
-        startingPaper = 10;
-        startingRock = 10;
     }
 
     private void Start()
