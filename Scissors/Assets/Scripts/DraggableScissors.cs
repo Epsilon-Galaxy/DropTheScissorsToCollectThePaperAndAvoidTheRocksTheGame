@@ -33,6 +33,8 @@ public class DraggableScissors : MonoBehaviour
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePosition.z = 0;
             transform.position = new Vector3(mousePosition.x + offset.x, transform.position.y, transform.position.z);
+
+            //if collide with left collider, stop stop dragging and 
         }
 
         if (transform.position.y < mainCamera.transform.position.y - mainCamera.orthographicSize)
@@ -59,7 +61,7 @@ public class DraggableScissors : MonoBehaviour
 
     private void DropScissors()
     {
-        ScoreKeeper scoreKeeper = FindObjectOfType<ScoreKeeper>();
+        ScoreKeeper scoreKeeper = FindFirstObjectByType<ScoreKeeper>();
         scoreKeeper.UseScissors();
         rb.gravityScale = 1f;
     }
@@ -94,6 +96,16 @@ public class DraggableScissors : MonoBehaviour
         if (collision.gameObject.tag == "Rock")
         {
             ResetPosition();
+        }
+
+        if (collision.gameObject.tag == "leftBounds" || collision.gameObject.tag == "rightBounds")
+        {
+            isDragging = false;
+            transform.position = initialPosition;
+            rb.linearVelocity = Vector2.zero;
+            rb.gravityScale = 0f;
+            rb.angularVelocity = 0f;
+            transform.rotation = Quaternion.identity;
         }
     }
 }

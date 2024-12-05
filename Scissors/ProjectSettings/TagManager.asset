@@ -7,6 +7,8 @@ TagManager:
   - Pins
   - Wall
   - Rock
+  - leftBounds
+  - rightBounds
   layers:
   - Default
   - TransparentFX
